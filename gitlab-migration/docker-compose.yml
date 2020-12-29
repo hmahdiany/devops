@@ -1,0 +1,21 @@
+
+version: '2'
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    user: root
+    restart: always
+    ports:
+      - '8021:80'
+      - '4321:443'
+      - '1721:22'
+    volumes:
+      - ./gitlab/config:/etc/gitlab:rw
+      - ./gitlab/logs:/var/log/gitlab:rw
+      - ./gitlab/data:/var/opt/gitlab:rw
+      - /etc/localtime:/etc/localtime
+      - /etc/ssh/sshd_config:/etc/ssh/sshd_config
+
+    restart: always
+    network_mode: bridge
