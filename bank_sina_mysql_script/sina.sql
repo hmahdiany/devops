@@ -1,4 +1,3 @@
-
 CREATE TABLE inbound_messages_new LIKE inbound_messages;
 CREATE TABLE outbound_messages_new LIKE outbound_messages;
 SELECT  @maxii :=  max(inbound_message_id)+500000 FROM inbound_messages;
