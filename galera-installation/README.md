@@ -102,3 +102,15 @@ Only use `systemctl set-environment MYSQLD_OPTS="--wsrep-new-cluster"` for the f
 In order to join other nodes to cluster just install new Mysql engine with `wsrep` API and edit `/etc/my.cnf` as described earlier in this article and start Mysql service normally.
 
 `systemctl start mysqld`
+
+# Check cluster status
+
+To see the cluster status after logging into Mysql database and run below commands:
+
+`SHOW STATUS LIKE 'wsrep_%';`
+
+`SHOW STATUS LIKE 'wsrep_cluster_size';`
+
+`SHOW VARIABLES LIKE 'wsrep_%' \G`
+
+`SHOW STATUS LIKE 'wsrep_%';`
