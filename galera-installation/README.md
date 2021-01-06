@@ -37,7 +37,7 @@ At this time we need to edit Mysql configuration so edit `/etc/my.cnf` and add b
 
 `vim /etc/my.cnf`
 
-`[mysqld]
+```[mysqld]
 datadir=/var/lib/mysql
 socket=/var/lib/mysql/mysql.sock
 user=mysql
@@ -53,11 +53,13 @@ wsrep_cluster_name="art"
 wsrep_cluster_address="gcomm://192.168.0.9,192.168.0.71"
 wsrep_sst_method=rsync
 
+# Galera Node Configuration
 wsrep_node_address="192.168.0.71"
 wsrep_node_name="master1"
 
 log-error=/var/log/mysqld.log
-pid-file=/var/run/mysqld/mysqld.pid`
+pid-file=/var/run/mysqld/mysqld.pid
+```
 
 Consider about below lines:
 
@@ -67,8 +69,11 @@ In `wsrep_cluster_name` you should add you desired name for database cluster.
 
 And these two below lines should be edited based on node informataion.
 
-`wsrep_node_address="192.168.0.71"
-wsrep_node_name="master1"`
+```
+# Galera Node Configuration
+wsrep_node_address="192.168.0.71"
+wsrep_node_name="master1"
+```
 
 Now it is time to initialize the cluster. To do this in first node of claster do below steps.
 
