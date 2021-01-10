@@ -1,0 +1,12 @@
+[Unit]
+Description=Nginx vts exporter 
+Wants=network-online.target
+After=network-online.target
+[Service]
+User=nginx_vts_exporter
+Group=nginx_vts_exporter
+ExecStart=/usr/local/bin/nginx_vts_exporter -nginx.scrape_uri=http://SERVER_IP:8080/status/format/json
+Restart=always
+RestartSec=3
+[Install]
+WantedBy=default.target
