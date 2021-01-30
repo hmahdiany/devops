@@ -1,0 +1,43 @@
+---
+- hosts: zabbixClients
+  tasks:
+    - name: Backup zabbix-agent.conf
+      copy:
+        src: /etc/zabbix/zabbix_agentd.conf
+        dest: /etc/zabbix/zabbix_agentd.conf.back
+        remote_src: yes
+
+    - name: remove zabbix-agent-4.4.10
+      yum:
+        name: zabbix-agent
+        state: removed
+    
+    - name: Install zabbix-agent2-5.0.8
+      yum:
+        name: https://repo.zabbix.com/zabbix/5.0/rhel/7/x86_64/zabbix-agent2-5.0.8-1.el7.x86_64.rpm
+        state: present
+
+    - name: Configure zabbix-agent2
+      replace:
+        path: /etc/zabbix/zabbix_agent2.conf
+        regexp: 'Server=127.0.0.1'
+        replace: Server=192.168.110.144
+
+    - name: Create sympolic link for /sbin/zabbix-agent2
+      file:
+        src: /sbin/zabbix_agent2
+        dest: /usr/local/bin/zabbix_agent2
+        state: link
+
+    - name: Copy Zabbix agent2 service file
+      template:
+        src: zabbix-agent2.service
+        dest: /etc/systemd/system/
+        owner: root
+
+    - name: Enable and start Zabbix agent2 service
+      systemd:
+        daemon_reload: yes
+        name: zabbix-agent2
+        enabled: yes
+        state: started
