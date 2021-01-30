@@ -24,7 +24,7 @@
         regexp: 'Server=127.0.0.1'
         replace: Server=192.168.110.144
 
-    - name: Enable and start Zabbix agent2 service
+    - name: Enable and start Zabbix agent service
       systemd:
         daemon_reload: yes
         name: zabbix-agent
