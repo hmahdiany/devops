@@ -1,0 +1,1 @@
+sudo awk -vDate=`date -d'now-65 hours' +[%d/%b/%Y:%H:%M:%S` -vDate2=`date -d'now-62 hours' +[%d/%b/%Y:%H:%M:%S` '$5 > Date && $5 < Date2 {print Date,Date2,$1}' access_log | sort | uniq -c | wc -l
