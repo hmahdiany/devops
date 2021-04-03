@@ -1,0 +1,12 @@
+## This document shows how to install haproxy from source with prometheus exporter
+
+`curl -LO http://www.haproxy.org/download/2.2/src/haproxy-2.2.9.tar.gz`
+
+`tar xf haproxy-2.2.9.tar.gz`
+
+`cd haproxy-2.2.9`
+
+`make TARGET=linux-glibc USE_PCRE=1 USE_OPENSSL=1 USE_ZLIB=1 USE_CRYPT_H=1 USE_LIBCRYPT=1 USE_SYSTEMD=1 EXTRA_OBJS="contrib/prometheus-exporter/service-prometheus.o"`
+
+`sudo make install`
+
