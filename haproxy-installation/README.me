@@ -14,3 +14,23 @@ Now create a serivce file for haproxy.
 
 `vim /etc/systemd/system/haproxy.service`
 
+    [Unit]
+    Description=HAProxy Load Balancer
+    After=syslog.target network.target
+    
+    [Service]
+    Environment="CONFIG=/etc/haproxy/haproxy.cfg" "PIDFILE=/run/haproxy.pid"
+    ExecStartPre=/usr/sbin/haproxy -f $CONFIG -c -q
+    ExecStart=/usr/sbin/haproxy -Ws -f $CONFIG -p $PIDFILE $OPTIONS
+    ExecReload=/usr/sbin/haproxy -f $CONFIG -c -q
+    ExecReload=/bin/kill -USR2 $MAINPID
+    KillMode=mixed
+    Restart=always
+    Type=notify
+    
+    [Install]
+    WantedBy=multi-user.target
+    
+Now start haproxy service
+
+`sudo systemctl daemon-reload; sudo systemctl enable haproxy; sudo systemctl start haproxy`
