@@ -10,6 +10,6 @@ discovery:
   timeout: 5m0s
   tlsBootstrapToken: <token>
 nodeRegistration:
-  name: kuber-worker-n1
+  name: <node name>
   kubeletExtraArgs:
-    node-ip: 192.168.115.38
+    node-ip: <node IP>
