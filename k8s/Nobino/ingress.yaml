@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   rules:
-  - host: kuber.nobino.ir
+  - host: preproduct.nobino.ir
     http:
       paths:
       - pathType: Prefix
@@ -15,7 +15,7 @@ spec:
             name: tv-front-svc 
             port:
               number: 80
-  - host: kuber-back.nobino.ir
+  - host: preproduct-back.nobino.ir
     http:
       paths:
       - pathType: Prefix
