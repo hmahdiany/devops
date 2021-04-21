@@ -3,13 +3,11 @@ kind: Service
 metadata:
   name: tv-back-svc
 spec:
-  type: NodePort
   selector:
     app: backend
   ports:
     - port: 8081
       targetPort: 8081
-      nodePort: 31081
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -40,6 +38,13 @@ spec:
             containers:
             - image: armaghantv
               imagePullPolicy: IfNotPresent
+              resources:
+                requests:
+                  memory: "1024Mi"
+                  cpu: "750m"
+                limits:
+                  memory: "2048Mi"
+                  cpu: "1000m"
               name: backend
               ports:
               - containerPort: 8081
