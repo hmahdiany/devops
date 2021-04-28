@@ -22,9 +22,8 @@ EXIT
 ~~~~
 
 # Configure Database credential
-~~~~
 Create  `/etc/.mysqld_exporter.cnf` and add below line in it. Edit the value of user and password based on real information you have entered in previous steps.
-
+~~~~
 [client]
 user=mysqld_exporter
 password=StrongPassword
